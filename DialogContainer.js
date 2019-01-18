@@ -25,19 +25,14 @@ class DialogContainer extends Component {
 
   closeDialog = () => this.setState({ isDialogOpen: false, isSectionContentHidden: false });
 
-  keyFunction = (event) => {
-    switch(event.key){
-      case 'Escape': return this.closeDialog();
-      default: return undefined;
-    }
-  }
+  escFunction = event => event.key === 'Escape' ? this.closeDialog() : undefined;
 
   componentDidMount(){
-    document.addEventListener('keydown', this.keyFunction, false);
+    document.addEventListener('keydown', this.escFunction, false);
   }
 
   componentWillUnmount(){
-    document.removeEventListener('keydown', this.keyFunction, false);
+    document.removeEventListener('keydown', this.escFunction, false);
     removeModalWrapper();
   }
 
