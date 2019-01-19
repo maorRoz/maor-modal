@@ -1,8 +1,8 @@
 {
   "name": "maor-modal",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "",
-  "main": "src/index.js",
+  "main": "build/index.js",
   "scripts": {
     "start": "webpack --watch",
     "build": "webpack"
