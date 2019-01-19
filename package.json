@@ -17,8 +17,15 @@
   },
   "homepage": "https://github.com/maorRoz/maor-modal#readme",
   "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.0.5",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-preset-env": "^1.7.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
-    "react-focus-lock": "^1.17.6"
+    "react-focus-lock": "^1.17.6",
+    "webpack": "^4.28.4"
   }
 }
