@@ -2,9 +2,10 @@
   "name": "maor-modal",
   "version": "1.0.4",
   "description": "",
-  "main": "DialogContainer.js",
+  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "webpack --watch",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
@@ -17,18 +18,24 @@
   },
   "homepage": "https://github.com/maorRoz/maor-modal#readme",
   "dependencies": {
+    "@babel/core": "^7.2.2",
     "@babel/plugin-proposal-class-properties": "^7.2.3",
+    "@babel/preset-env": "^7.2.3",
     "@babel/preset-react": "^7.0.0",
+    "@babel/register": "^7.0.0",
     "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
     "babel-loader": "^8.0.5",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-plugin-transform-react-jsx": "^6.24.1",
-    "babel-preset-env": "^1.7.0",
+    "babel-register": "^7.0.0-beta.3",
     "css-loader": "^2.1.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-focus-lock": "^1.17.6",
+    "style-loader": "^0.23.1",
     "webpack": "^4.28.4"
+  },
+  "devDependencies": {
+    "webpack-cli": "^3.2.1"
   }
 }
