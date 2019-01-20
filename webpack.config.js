@@ -1,10 +1,10 @@
 
 var path = require('path');
 module.exports = {
-  entry: './src/index.js',
+  entry: './src/DialogContainer.js',
   output: {
     path: path.resolve(__dirname, 'build'),
-    filename: 'index.js',
+    filename: 'DialogContainer.js',
     libraryTarget: 'commonjs2'
   },
   module: {

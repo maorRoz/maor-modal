@@ -18,17 +18,32 @@ const removeModalWrapper = () => {
 class DialogContainer extends Component {
   constructor(props){
     super(props);
-    this.state = { isDialogOpen: true, isSectionContentHidden: true };
+    this.state = { isDialogOpen: false };
 
     createModalWrapper();
   }
 
-  closeDialog = () => this.setState({ isDialogOpen: false, isSectionContentHidden: false });
+  openDialog = () => {
+    this.setState({ isDialogOpen: true });
+  }
+
+  firstInteractableElementRef = React.createRef();
+
+  setFocus = () => {
+    this.firstInteractableElementRef.current.focus();
+  }
+
+  closeDialog = () => this.setState({ isDialogOpen: false });
 
   escFunction = event => event.key === 'Escape' ? this.closeDialog() : undefined;
 
   componentDidMount(){
     document.addEventListener('keydown', this.escFunction, false);
+  }
+
+  componentDidUpdate(){
+    const toFocus = this.firstInteractableElementRef.current;
+    return toFocus ? toFocus.focus() : undefined;
   }
 
   componentWillUnmount(){
@@ -38,24 +53,24 @@ class DialogContainer extends Component {
 
   render() {
     const { content, visualOverlay, dialogContent } = this.props;
-    const { isDialogOpen, isSectionContentHidden } = this.state;
+    const { isDialogOpen } = this.state;
     return(
       <section>
-        <div id='sectionContent' aria-hidden={isSectionContentHidden} onClick={this.closeDialog}>
-          {isDialogOpen && visualOverlay}
-          {content}
+        <div id='sectionContent' aria-hidden={isDialogOpen} onClick={isDialogOpen ? this.closeDialog : undefined}>
+          {visualOverlay(isDialogOpen)}
+          {content(this.openDialog)}
         </div>
         <div id='dialogPlaceholder'>
-          {isDialogOpen && <Modal>
-            <div>{visualOverlay}</div>
-            <FocusLock autoFocus returnFocus>
-              <dialog open>
-                <div role='document'>
-                  {dialogContent}
-                </div>
-              </dialog>
-            </FocusLock>
-          </Modal>}
+          <Modal>
+            <div>{visualOverlay(isDialogOpen)}</div>
+            { isDialogOpen && <dialog open>
+              <div role='document'>
+                <FocusLock returnFocus>
+                  {dialogContent(this.closeDialog, this.firstInteractableElementRef)}
+                </FocusLock>
+              </div>
+            </dialog> }
+          </Modal>
         </div>
       </section>);
   }
